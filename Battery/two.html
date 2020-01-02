@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background: #e4e4e4;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 140px;
+            position: relative;
+            margin: auto;
+        }
+
+        .battery {
+            height: 220px;
+            border-radius: 15px 15px 5px 5px;
+            background: #ffffff;
+            z-index: 1;
+            box-sizing: border-box;
+            /* filtr: drop-shadow(阴影偏移X,阴影偏移Y,颜色)) */
+            filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.22));
+        }
+
+        .battery::after {
+            content: '';
+            width: 26px;
+            height: 10px;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -10px);
+            background: rgba(240, 240, 240, .88);
+            border-radius: 5px 5px 0 0;
+        }
+
+        .battery::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 90%;
+            background: linear-gradient(to bottom, #7abcff 0%, #00BCD4 44%, #2196F3 100%);
+            border-radius: 0px 0px 5px 5px;
+            box-shadow: 0 14px 28px rgba(33, 150, 243, 0), 0 10px 10px rgba(9, 188, 215, 0.08);
+            animation: charging 4s linear infinite;
+            /* filter: hue-rotate()给图像应用色相旋转 */
+            filter: hue-rotate(90deg);
+        }
+
+        @keyframes charging {
+            50% {
+                box-shadow: 0 14px 28px rgba(0, 150, 130, 0.83), 0 10px 10px rgba(9, 188, 215, 0.4);
+            }
+
+            95% {
+                top: 5%;
+                filter: hue-rotate(0deg);
+                border-radius: 0px 0px 5px 5px;
+                box-shadow: 0 14px 28px rgba(4, 188, 213, 0.2), 0 10px 10px rgba(9, 188, 215, 0.08);
+            }
+
+            100% {
+                top: 0%;
+                filter: hue-rotate(0deg);
+                border-radius: 15px 15px 5px 5px;
+                box-shadow: 0 14px 28px rgba(4, 188, 213, 0), 0 10px 10px rgba(9, 188, 215, 0.4);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="battery"></div>
+    </div>
+</body>
+
+</html>
