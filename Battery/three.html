@@ -23,6 +23,17 @@
             margin: auto;
         }
 
+        .header {
+            width: 26px;
+            height: 10px;
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translate(-50%, -10px);
+            background: rgba(240, 240, 240, .88);
+            border-radius: 5px 5px 0 0;
+        }
+
         .battery {
             height: 220px;
             border-radius: 15px 15px 5px 5px;
@@ -31,17 +42,6 @@
             box-sizing: border-box;
             /* filtr: drop-shadow(阴影偏移X,阴影偏移Y,颜色)) */
             filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.22));
-        }
-
-        .battery::after {
-            content: '';
-            width: 26px;
-            height: 10px;
-            position: absolute;
-            left: 50%;
-            transform: translate(-50%, -10px);
-            background: rgba(240, 240, 240, .88);
-            border-radius: 5px 5px 0 0;
         }
 
         .battery::before {
@@ -54,9 +54,42 @@
             background: linear-gradient(to bottom, #7abcff 0%, #00BCD4 44%, #2196F3 100%);
             border-radius: 0px 0px 5px 5px;
             box-shadow: 0 14px 28px rgba(33, 150, 243, 0), 0 10px 10px rgba(9, 188, 215, 0.08);
-            animation: charging 4s linear infinite;
+            animation: charging 10s linear infinite;
             /* filter: hue-rotate()对渐变色彩进行色彩过渡变换动画 */
             filter: hue-rotate(90deg);
+        }
+
+        .battery-copy {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 220px;
+            width: 140px;
+            border-radius: 15px 15px 5px 5px;
+            overflow: hidden;
+
+        }
+
+        .wave {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, .8);
+            border-radius: 45% 47% 44% 42%;
+            bottom: 25px;
+            left: 50%;
+            transform: translate(-50%, 0);
+            z-index: 1;
+            animation: turn 10s linear infinite;
+
+        }
+        .wave:nth-child(2){
+            border-radius: 38% 46% 43% 47%;
+            transform: translate(-50%,0) rotate(-135deg);
+        }
+        .wave:nth-child(3){
+            border-radius: 42% 46% 37% 40%;
+            transform: translate(-50%,0) rotate(135deg);
         }
 
         @keyframes charging {
@@ -78,12 +111,24 @@
                 box-shadow: 0 14px 28px rgba(4, 188, 213, 0), 0 10px 10px rgba(9, 188, 215, 0.4);
             }
         }
+
+        @keyframes turn {
+            100% {
+                transform: translate(-50%,-180px) rotate(720deg);
+            }
+        }
     </style>
 </head>
 
 <body>
     <div class="box">
+        <div class="header"></div>
         <div class="battery"></div>
+        <div class="battery-copy">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
     </div>
 </body>
 
